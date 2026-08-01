@@ -115,13 +115,29 @@ a{color:inherit}
 
 /* ---- Nav ---- */
 nav{position:sticky;top:0;z-index:20;background:rgba(29,38,50,.97);backdrop-filter:blur(6px);border-bottom:3px solid var(--geel)}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:#fff;text-decoration:none}
-.logo .mark{width:32px;height:32px;border-radius:8px;background:var(--geel);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:20px}
-.navlinks{display:flex;align-items:center;gap:8px}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:#fff;text-decoration:none;white-space:nowrap;flex-shrink:0}
+.logo .mark{width:32px;height:32px;border-radius:8px;background:var(--geel);color:var(--ink);display:grid;place-items:center;font-weight:900;font-size:20px;flex-shrink:0}
+.navlinks{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .navlinks a{color:#cdd6de;text-decoration:none;font-weight:600;font-size:15px;padding:8px 12px;border-radius:8px}
 .navlinks a:hover{color:#fff}
-.navcta{background:var(--geel)!important;color:var(--ink)!important;font-weight:700}
+.navcta{background:var(--geel)!important;color:var(--ink)!important;font-weight:700;white-space:nowrap}
+.hamburger{display:none;background:transparent;border:0;cursor:pointer;padding:8px;flex-shrink:0}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .25s}
+.hamburger span+span{margin-top:5px}
+nav.open .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+nav.open .hamburger span:nth-child(2){opacity:0}
+nav.open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:640px){
+  .logo{font-size:18px;gap:8px}
+  .logo .mark{width:28px;height:28px;font-size:18px}
+  .hamburger{display:block}
+  .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--ink);border-bottom:3px solid var(--geel);padding:8px 14px 16px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s}
+  nav.open .navlinks{transform:translateY(0);opacity:1;pointer-events:auto}
+  .navlinks a{font-size:17px;padding:14px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
+  .navlinks a:last-child{border-bottom:0}
+  .navcta{margin-top:10px;text-align:center;padding:14px!important;border-radius:10px}
+}
 @media(max-width:640px){.navlinks a:not(.navcta){display:none}}
 
 /* ---- Hero ---- */
@@ -206,10 +222,13 @@ footer .fllinks{display:flex;gap:18px;flex-wrap:wrap}
 </head>
 <body>
 
-<nav>
+<nav id="nav">
   <div class="wrap">
     <a href="#top" class="logo"><span class="mark">P</span> Pseudomaker<span style="color:var(--geel)">.nl</span></a>
-    <div class="navlinks">
+    <button class="hamburger" aria-label="Menu openen" aria-expanded="false" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navlinks" id="navlinks">
       <a href="#werkwijze">Hoe het werkt</a>
       <a href="#functies">Functies</a>
       <a href="#faq">FAQ</a>
@@ -390,5 +409,20 @@ footer .fllinks{display:flex;gap:18px;flex-wrap:wrap}
   </div>
 </footer>
 
+<script>
+function toggleMenu(){
+  var nav=document.getElementById('nav');
+  var open=nav.classList.toggle('open');
+  nav.querySelector('.hamburger').setAttribute('aria-expanded',open?'true':'false');
+}
+// Menu sluiten na klik op een link
+document.getElementById('navlinks').addEventListener('click',function(e){
+  if(e.target.tagName==='A'){
+    var nav=document.getElementById('nav');
+    nav.classList.remove('open');
+    nav.querySelector('.hamburger').setAttribute('aria-expanded','false');
+  }
+});
+</script>
 </body>
 </html>
