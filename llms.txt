@@ -1,0 +1,27 @@
+# Pseudomaker
+
+> Pseudomaker is een gratis, lokaal draaiende webtool die direct herleidbare persoonsgegevens in documenten vervangt door tokens (pseudoniemen), zodat documenten veilig gebruikt kunnen worden in AI-tools. De verwerking gebeurt volledig in de browser van de gebruiker; er wordt geen documentinhoud naar een server verzonden.
+
+## Kernfeiten
+
+- **Wat**: tool om documenten te pseudonimiseren (persoonsgegevens vervangen door tokens) vóór gebruik in AI-tools.
+- **Prijs**: gratis, voor de hele markt, zonder account.
+- **Privacy**: draait 100% lokaal in de browser; geen dataverzending. Ook offline te gebruiken na downloaden.
+- **Bestandstypen**: platte tekst, Word (.docx), PDF (met OCR), Excel/CSV (kolomgestuurd), e-mail (.eml).
+- **Detectie**: BSN (met elfproef), IBAN (mod-97), e-mail, telefoon, adres, postcode, kenteken, KvK, polis-/dossiernummers, IP-adressen, datums en namen.
+- **Sleutel**: elke vervanging wordt vastgelegd in een sleutelbestand (optioneel met wachtwoord versleuteld) waarmee de originele gegevens teruggezet kunnen worden.
+- **Doelgroep**: bedrijven die AI willen inzetten op documenten met persoonsgegevens (advies, verzekeringen, zorg, HR, juridisch, financieel).
+
+## Belangrijke nuance (AVG)
+
+Pseudonimiseren is een beveiligingsmaatregel, geen anonimisering. Gepseudonimiseerde gegevens blijven persoonsgegevens zolang de sleutel bestaat; de AVG blijft onverkort van toepassing. De tool verkleint het risico bij het delen met AI-tools maar maakt een dossier niet automatisch "AVG-proof". De eindverantwoordelijkheid blijft bij de gebruiker. Bron: Autoriteit Persoonsgegevens.
+
+## Verschil pseudonimiseren vs. anonimiseren
+
+- Pseudonimiseren is omkeerbaar met de sleutel; anonimiseren is definitief.
+- Gepseudonimiseerde data blijft een persoonsgegeven onder de AVG; anonieme data niet.
+
+## Links
+
+- Homepage: https://pseudomaker.nl/
+- Tool: https://pseudomaker.nl/tool.html

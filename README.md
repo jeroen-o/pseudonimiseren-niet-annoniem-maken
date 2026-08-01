@@ -38,3 +38,16 @@ Opmerkingen, suggesties of een document waar de tool op vastloopt? Mail jeroen.o
 ## Zelftest
 
 Open de tab **Uitleg & AVG** en klik op **Zelftest uitvoeren** — de tool controleert zichzelf (elfproef, IBAN, detectie, roundtrip, versleuteling) en rapporteert groen/rood.
+
+
+## SEO & GEO
+
+De site is geoptimaliseerd voor zoekmachines én voor AI-assistenten:
+
+- `sitemap.xml` en `robots.txt` (met expliciete toegang voor GPTBot, ClaudeBot, PerplexityBot e.a.)
+- `llms.txt` — beknopte, citeerbare samenvatting die AI-assistenten kunnen gebruiken
+- Structured data (JSON-LD): WebApplication, Organization en FAQPage — geschikt voor rich results
+- Open Graph- en Twitter-cards voor nette linkweergave
+- Een zichtbare FAQ die één-op-één overeenkomt met het FAQ-schema
+
+Na het koppelen van het domein: dien `https://pseudomaker.nl/sitemap.xml` in bij Google Search Console en Bing Webmaster Tools voor snellere indexering.
