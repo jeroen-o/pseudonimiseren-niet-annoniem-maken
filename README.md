@@ -1,4 +1,4 @@
-# Pseudonimisator v6.1
+# Pseudomaker v6.1
 
 Vervang persoonsgegevens in teksten, Word-bestanden, PDF's, e-mails en spreadsheets door tokens vóórdat je een dossier gebruikt in een AI-tool — volledig lokaal in de browser, zonder dataverzending. Inclusief foto's/PDF's blurren, documentvergelijker, Word-herstel en een ingebouwd deelbaar-stoplicht.
 

@@ -1,5 +1,13 @@
 # Versiegeschiedenis
 
+## v6.2
+- Naamvarianten: een ingevoerde naam dekt automatisch voornaam, achternaam met tussenvoegsels, samengestelde en koppelteken-varianten
+- Voornamenlijst uitgebreid naar 2.300+ Nederlandse voornamen (suggesties)
+- Ingebouwde detectie van polis-, dossier-, klant-, contract- en offertenummers (met context) en IP-adressen
+- Automatische roundtrip-controle na elke verwerking, zichtbaar in het stoplicht
+- Sleutel-documentmatch bij terugzetten: waarschuwing wanneer een sleutel vermoedelijk niet bij het document hoort
+- Extra Word-risicodekking: verplaatste tekst (moveFrom/moveTo), people.xml-auteursgegevens en de documentthumbnail worden opgeschoond; thumbnail telt mee in de mediadetectie
+
 ## v6.1
 - In-page dialoogvensters in plaats van browser-pop-ups: alle functies (incl. sleutelwachtwoorden) werken nu ook in een Google Sites-iframe
 - Knop "Tool downloaden" om het HTML-bestand op de eigen pc te zetten

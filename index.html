@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pseudonimisator v6.1 — lokaal persoonsgegevens vervangen &amp; foto's blurren</title>
+<title>Pseudomaker v6.2 — lokaal persoonsgegevens vervangen &amp; foto's blurren</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -106,7 +106,7 @@ input[type=range]{accent-color:var(--primary)}
       <button class="btn accent" id="hulpBtn" onclick="toonHandleiding(true)">📖 Handleiding</button>
     </div>
     <span class="badge">100% LOKAAL · GEEN DATAVERZENDING</span>
-    <h1>Pseudonimisator <span style="color:var(--btn)">v6.1</span> <button id="infoBtn" onclick="toonInfo(true)" title="Wat is pseudonimiseren?" aria-label="Uitleg over pseudonimiseren">i</button></h1>
+    <h1>Pseudomaker <span style="color:var(--btn)">v6.2</span> <button id="infoBtn" onclick="toonInfo(true)" title="Wat is pseudonimiseren?" aria-label="Uitleg over pseudonimiseren">i</button></h1>
     <p>Vervang persoonsgegevens in teksten en documenten door tokens vóórdat je ze gebruikt in een AI-tool, en maak gezichten, kentekens of documentgegevens op foto's onherkenbaar. Alles gebeurt in je eigen browser.</p>
   </div>
 </header>
@@ -144,7 +144,7 @@ input[type=range]{accent-color:var(--primary)}
       </div>
 
       <h3>Eigen namen en termen</h3>
-      <textarea id="names" class="small" placeholder="Jansen, Pietersen, De Vries, Bakkerij Willems — genitiefvormen (Jansens) worden automatisch meegenomen"></textarea>
+      <textarea id="names" class="small" placeholder="Jan van den Berg, De Vries, Bakkerij Willems — voornaam, achternaam, tussenvoegsel- en genitiefvormen worden automatisch meegenomen"></textarea>
 
       <h3>Eigen patronen (optioneel, geavanceerd)</h3>
       <textarea id="patterns" class="small" style="min-height:96px" placeholder="Eén patroon per regel, als LABEL|regex — bijv.&#10;POLIS|\bP-\d{7}\b&#10;DOSSIER|\bD\d{4}-\d{3}\b"></textarea>
@@ -161,6 +161,8 @@ input[type=range]{accent-color:var(--primary)}
         <label><input type="checkbox" id="d_kvk" checked> KvK-nummers (met context)</label>
         <label><input type="checkbox" id="d_aanhef" checked> Namen na aanhef (dhr./mevr./…)</label>
         <label><input type="checkbox" id="d_init" checked> Initialen + achternaam (J. de Vries)</label>
+        <label><input type="checkbox" id="d_polis" checked> Polis-/dossiernummers (met context)</label>
+        <label><input type="checkbox" id="d_ip"> IP-adressen</label>
         <label><input type="checkbox" id="d_datum"> Datums (12-03-1985)</label>
         <label><input type="checkbox" id="d_datumtxt"> Datums voluit (12 maart 1985)</label>
       </div>
@@ -365,7 +367,7 @@ input[type=range]{accent-color:var(--primary)}
     </div>
   </section>
 
-  <footer class="wrap">Pseudonimisator v6.1 · Deze tool draait volledig in de browser en verzendt geen documentinhoud. Indicatief hulpmiddel — controleer het resultaat altijd zelf. Gepseudonimiseerde gegevens blijven persoonsgegevens onder de AVG zolang de sleutel bestaat. Feedback of een document waar de tool op vastloopt? Mail <a href="mailto:jeroen.oversteegen@blinqx.tech" style="color:var(--accent)">jeroen.oversteegen@blinqx.tech</a>.</footer>
+  <footer class="wrap">Pseudomaker v6.2 · Deze tool draait volledig in de browser en verzendt geen documentinhoud. Indicatief hulpmiddel — controleer het resultaat altijd zelf. Gepseudonimiseerde gegevens blijven persoonsgegevens onder de AVG zolang de sleutel bestaat. Feedback of een document waar de tool op vastloopt? Mail <a href="mailto:jeroen.oversteegen@blinqx.tech" style="color:var(--accent)">jeroen.oversteegen@blinqx.tech</a>.</footer>
 </main>
 
 <div id="infoModal" class="hidden" onclick="if(event.target===this)toonInfo(false)">
@@ -403,7 +405,7 @@ input[type=range]{accent-color:var(--primary)}
 <div id="hulpModal" class="hidden" onclick="if(event.target===this)toonHandleiding(false)">
   <div class="hulpbox">
     <div class="hulptop">
-      <h2>Handleiding Pseudonimisator v6.1</h2>
+      <h2>Handleiding Pseudomaker v6.2</h2>
       <div style="display:flex;gap:8px">
         <button class="btn ghost small" onclick="printHandleiding()">Afdrukken</button>
         <button class="btn small" onclick="toonHandleiding(false)">Sluiten ✕</button>
@@ -445,7 +447,7 @@ input[type=range]{accent-color:var(--primary)}
     <ol>
       <li>Plak tekst in het invoerveld en/of voeg bestanden toe (.txt, Word .docx, PDF, e-mail .eml). Je kunt meerdere bestanden tegelijk verwerken; alle documenten delen dan één sleutel en dezelfde tokens.</li>
       <li><b>Vervolgdossier?</b> Laad eerst de bestaande sleutel bij "Bestaande sleutel aanvullen" — bestaande tokens blijven identiek, nieuwe gegevens krijgen vervolgnummers, en de gedownloade sleutel bevat daarna alles.</li>
-      <li>Vul bij <b>Eigen namen</b> de achternamen, bedrijfsnamen en andere termen in die vervangen moeten worden. Genitiefvormen (Jansens) gaan automatisch mee. Let bij e-mails op de weergavenaam van de afzender ("Jan Jansen &lt;jan@…&gt;") — het e-mailadres wordt automatisch vervangen, de naam via deze lijst of de suggesties.</li>
+      <li>Vul bij <b>Eigen namen</b> de achternamen, bedrijfsnamen en andere termen in die vervangen moeten worden. Eén ingevoerde naam dekt automatisch alle vormen: "Jan van den Berg" vervangt ook "Jan", "Berg" en "van den Berg", en genitiefvormen (Jansens) gaan mee. Let bij e-mails op de weergavenaam van de afzender ("Jan Jansen &lt;jan@…&gt;") — het e-mailadres wordt automatisch vervangen, de naam via deze lijst of de suggesties.</li>
       <li>Gebruik <b>Eigen patronen</b> voor kantoorspecifieke nummers, bijv. <code>POLIS|\bP-\d{7}\b</code> voor polisnummers.</li>
       <li>Controleer de vinkjes bij <b>Automatische herkenning</b> en klik op <b>Pseudonimiseren</b>.</li>
     </ol>
@@ -494,6 +496,7 @@ input[type=range]{accent-color:var(--primary)}
 
     <h3>Versiegeschiedenis</h3>
     <ul>
+      <li><b>v6.2</b> — naamvarianten (één ingevoerde naam dekt automatisch voornaam, achternaam met tussenvoegsels en koppelteken-varianten), voornamenlijst uitgebreid naar 2.300+ namen, ingebouwde polis-/dossiernummer- en IP-detectie, automatische roundtrip-controle na elke verwerking (stoplicht), sleutel-documentmatch bij terugzetten, en extra Word-risicodekking: verplaatste tekst (track changes), people.xml-auteursgegevens en de documentthumbnail.</li>
       <li><b>v6.1</b> — iframe-proof dialoogvensters (volledig werkend in een Google Sites-embed, incl. sleutelwachtwoorden) en de knop "Tool downloaden" om het bestand op je eigen pc te zetten.</li>
       <li><b>v6.0</b> — Word-herstel, documentvergelijker, PDF-rasteren, zelftest, dossierlabel, hyperlink-/tabblad-/Postbus-dekking, media- en bijlagesignalering.</li>
       <li><b>v4.0</b> — veilige bestandsnamen, Word-metadata &amp; tracked-changes-opschoning, deelbaar-stoplicht, Excel/CSV kolomgestuurd.</li>
@@ -584,10 +587,10 @@ async function downloadTool(){
   try{
     const resp=await fetch(window.location.href,{cache:'no-store'});
     if(!resp.ok) throw new Error();
-    downloadBlob(await resp.blob(),'pseudonimisator.html');
+    downloadBlob(await resp.blob(),'pseudomaker.html');
   }catch(e){
     const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
-    downloadBlob(new Blob([html],{type:'text/html;charset=utf-8'}),'pseudonimisator.html');
+    downloadBlob(new Blob([html],{type:'text/html;charset=utf-8'}),'pseudomaker.html');
   }
 }
 
@@ -692,7 +695,7 @@ async function leesDocxMetadata(buffer){
     titel:g(core,/<dc:title>([^<]*)<\/dc:title>/),
     bedrijf:g(app,/<Company>([^<]*)<\/Company>/)
   };
-  const media=Object.keys(zip.files).filter(n=>/^word\/media\//.test(n)).length;
+  const media=Object.keys(zip.files).filter(n=>/^word\/media\//.test(n)||/^docProps\/thumbnail\./i.test(n)).length;
   return {meta:(meta.auteur||meta.bewerker||meta.titel||meta.bedrijf)?meta:null, media};
 }
 function kolomType(h){
@@ -906,12 +909,12 @@ function laadPraktijkvoorbeeld(){
 }
 function exportInstellingen(){
   const vinkjes={};
-  ['d_email','d_iban','d_bsn','d_tel','d_pc','d_adres','d_kenteken','d_kvk','d_aanhef','d_init','d_datum','d_datumtxt'].forEach(id=>vinkjes[id]=d(id));
+  ['d_email','d_iban','d_bsn','d_tel','d_pc','d_adres','d_kenteken','d_kvk','d_aanhef','d_init','d_datum','d_datumtxt','d_ip','d_polis'].forEach(id=>vinkjes[id]=d(id));
   const inst={versie:3,type:'pseudonimisator-instellingen',
     namen:document.getElementById('names').value,
     patronen:document.getElementById('patterns').value,
     vinkjes,uitsluitingen:[...state.excluded]};
-  downloadText(JSON.stringify(inst,null,2),'pseudonimisator-instellingen.json');
+  downloadText(JSON.stringify(inst,null,2),'pseudomaker-instellingen.json');
 }
 async function importInstellingen(e){
   const f=e.target.files[0]; if(!f) return;
@@ -945,6 +948,43 @@ function ibanGeldig(s){
     for(const dg of v) rem=(rem*10+parseInt(dg,10))%97;
   }
   return rem===1;
+}
+
+/* ============ Naamvarianten (één naam dekt alle vormen) ============ */
+const TUSSENVOEGSELS=new Set(['de','den','der','van','te','ter','ten','het','af','uit','op','in','aan','el','al']);
+function naamVarianten(naam){
+  const uit=new Set([naam]);
+  const w=naam.split(/\s+/).filter(Boolean);
+  if(w.length>1){
+    if(w[0].length>=3 && !TUSSENVOEGSELS.has(w[0].toLowerCase())) uit.add(w[0]);           // voornaam
+    let s=w.length-1;
+    while(s>0 && TUSSENVOEGSELS.has(w[s-1].toLowerCase())) s--;
+    const achter=w.slice(s).join(' ');
+    if(achter && achter!==naam) uit.add(achter);                                            // achternaam incl. tussenvoegsels
+    const kern=w[w.length-1];
+    if(kern.length>=3) uit.add(kern);                                                       // kale achternaam
+    // Samengestelde achternaam: "Fatima de Boer-El Idrissi" → "de Boer-El Idrissi"
+    if(w.length>2 && TUSSENVOEGSELS.has(w[1].toLowerCase())) uit.add(w.slice(1).join(' '));
+  }
+  [...uit].forEach(v=>{
+    if(v.includes('-')){
+      uit.add(v.replace(/-/g,' '));                                                         // koppelteken → spatie
+      v.split('-').map(x=>x.trim()).filter(Boolean).forEach(d=>{
+        if(d.length>=3) uit.add(d);                                                         // losse delen
+        const dw=d.split(/\s+/); const laatste=dw[dw.length-1];
+        if(laatste.length>=3 && !TUSSENVOEGSELS.has(laatste.toLowerCase())) uit.add(laatste); // kern per deel ("Boer")
+      });
+    }
+  });
+  return [...uit].filter(v=>v.length>=2 && !TUSSENVOEGSELS.has(v.toLowerCase()));
+}
+function breidNamenUit(namen){
+  const uit=[]; const gezien=new Set();
+  namen.forEach(n=>naamVarianten(n).forEach(v=>{
+    const l=v.toLowerCase();
+    if(!gezien.has(l)){ gezien.add(l); uit.push(v); }
+  }));
+  return uit.sort((a,b)=>b.length-a.length);
 }
 
 /* ============ Detectoren ============ */
@@ -994,6 +1034,18 @@ function detecteer(text, eigenNamen, patronen, opts, geforceerd){
     push(/\bPostbus\s+\d+\b/gi,'ADRES');
   }
   if(opts.pc)    push(/\b[1-9]\d{3}\s?[A-Z]{2}\b/g,'POSTCODE');
+  if(opts.ip) push(/\b(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}\b/g,'IP');
+  if(opts.polis){
+    const reP=/\b(polis|dossier|schade|relatie|klant|contract|offerte|referentie)(?:nummer|nr|no)?\.?\s*[:#]?\s*([A-Z0-9][A-Z0-9.\-\/]{3,24})(?![\p{L}\d])/giu;
+    reP.lastIndex=0; let mP;
+    const typeMap={polis:'POLIS',schade:'DOSSIER',dossier:'DOSSIER',relatie:'KLANT',klant:'KLANT',contract:'CONTRACT',offerte:'OFFERTE',referentie:'REFERENTIE'};
+    while((mP=reP.exec(text))!==null){
+      const val=mP[2];
+      if(/^(?:19|20)\d{2}$/.test(val)) continue;
+      const off=mP[0].lastIndexOf(val);
+      matches.push({start:mP.index+off,end:mP.index+off+val.length,val,type:typeMap[mP[1].toLowerCase()]||'DOSSIER'});
+    }
+  }
   if(opts.datum) push(/\b\d{1,2}[-\/]\d{1,2}[-\/](?:19|20)\d{2}\b/g,'DATUM');
   if(opts.datumtxt) push(/\b\d{1,2}\s+(?:januari|februari|maart|april|mei|juni|juli|augustus|september|oktober|november|december)\s+(?:19|20)\d{2}\b/gi,'DATUM');
   if(opts.aanhef){
@@ -1044,7 +1096,7 @@ function pseudonimiseerTekst(text, eigenNamen, patronen, opts, geforceerd){
 }
 
 /* ============ Voornamenlijst ============ */
-const VOORNAMEN=new Set(('Jan,Piet,Kees,Henk,Peter,Hans,Johan,Willem,Cor,Dirk,Gerrit,Jaap,Bert,Wim,Theo,Frank,Paul,Mark,Erik,Rob,Ronald,Richard,Michel,Michiel,Martin,Marcel,Patrick,Dennis,Jeroen,Sander,Bas,Thomas,Tim,Tom,Rick,Niels,Jesse,Daan,Sem,Lucas,Luuk,Milan,Levi,Bram,Ruben,Thijs,Sven,Lars,Stijn,Koen,Joris,Gijs,Floris,Pim,Maarten,Matthijs,Vincent,Jos,Leander,Lode,Vince,Dennes,Ilja,Arjan,Andre,Anton,Bob,Chris,David,Eddy,Ed,Ferry,Gert,Harm,Hugo,Igor,Ivo,Jack,Jim,Joop,Karel,Leo,Louis,Marco,Nico,Otto,Rene,Ruud,Simon,Stefan,Ted,Victor,Wouter,Anna,Emma,Sophie,Julia,Lisa,Eva,Sara,Sarah,Noor,Tess,Fleur,Lotte,Sanne,Femke,Iris,Marit,Nina,Rosa,Vera,Esmee,Amber,Anouk,Bianca,Carla,Danielle,Diana,Ellen,Els,Esther,Fatima,Gerda,Hanna,Ineke,Ingrid,Jacqueline,Janneke,Joke,Karin,Kim,Laura,Linda,Maaike,Manon,Margriet,Maria,Marieke,Marja,Marlies,Miranda,Monique,Nathalie,Natasja,Nicole,Petra,Renate,Rian,Saskia,Silvia,Simone,Sonja,Suzanne,Tanja,Truus,Wendy,Wilma,Yvonne,Angela,Astrid,Brigitte,Chantal,Claudia,Daphne,Denise,Evelien,Floor,Hannah,Ilse,Jolanda,Judith,Karlijn,Lieke,Loes,Mandy,Merel,Mirjam,Nadia,Patricia,Priscilla,Ramona,Rebecca,Roos,Sabine,Sharon,Sylvia,Tessa,Veerle,Wieke').split(','));
+const VOORNAMEN=new Set(["aad", "aaltje", "aart", "abdul", "abdullah", "abe", "abel", "achraf", "ada", "adam", "adil", "adinda", "adnan", "adriaan", "adrianus", "agnes", "ahmed", "ahmet", "aicha", "albert", "aldert", "aleida", "alex", "alexander", "alexandra", "ali", "alice", "alicia", "amber", "amina", "amir", "amira", "amy", "andre", "andreas", "angela", "angelique", "anita", "anja", "anke", "ann", "anna", "annabel", "anneke", "annelies", "annemarie", "annemiek", "annet", "annette", "annie", "anouk", "antje", "anton", "antoon", "arend", "arie", "arina", "arjan", "arjen", "arnold", "arnoud", "art", "arthur", "astrid", "auke", "aukje", "ayse", "barbara", "bart", "bas", "bastiaan", "bea", "beatrix", "ben", "bengt", "benjamin", "bente", "bep", "bernadette", "bernard", "bert", "betsy", "bianca", "bibi", "bilal", "bo", "bob", "boudewijn", "bram", "brechtje", "brian", "brigitte", "britt", "bryan", "carla", "carlijn", "carmen", "carola", "carolien", "caroline", "cas", "casper", "catharina", "cathelijne", "cecile", "cees", "celine", "chantal", "charlotte", "chiara", "chris", "christa", "christiaan", "christina", "cindy", "claire", "claudia", "cobie", "coen", "constance", "cor", "corina", "corine", "cornelia", "cornelis", "corrie", "cynthia", "daan", "dana", "daniel", "daniela", "daniele", "danielle", "danny", "daphne", "david", "debby", "deborah", "demi", "denise", "dennes", "dennis", "derk", "diana", "dick", "diederik", "dieuwke", "dilara", "dina", "dionne", "dirk", "dominic", "dominique", "donna", "dora", "dorien", "doris", "dorothee", "dylan", "ebru", "edith", "eduard", "edward", "eefje", "eelco", "egbert", "elias", "eline", "elisa", "elisabeth", "elise", "ella", "elle", "ellen", "elly", "els", "elsbeth", "else", "elske", "emiel", "emin", "emine", "emma", "enzo", "erik", "ernst", "esat", "esma", "esmee", "ester", "esther", "eva", "evelien", "eveline", "evert", "evi", "fabian", "famke", "farid", "fatima", "fatma", "feline", "felix", "femke", "fenna", "ferdinand", "ferry", "finn", "fleur", "floor", "floortje", "floris", "fokje", "francien", "francisca", "frank", "frans", "frederik", "freek", "frida", "frieda", "friso", "geert", "geertje", "geertruida", "gerard", "gerben", "gerbrand", "gerda", "gerdien", "gerrie", "gerrit", "gerritje", "gert", "gijs", "gilles", "gonnie", "govert", "greetje", "guido", "gustaaf", "guus", "haci", "hafida", "hajar", "hamza", "hanna", "hannah", "hanneke", "hannie", "hans", "harm", "harmen", "harold", "harriet", "harry", "hasan", "hatice", "hein", "heleen", "helen", "helena", "hella", "hendrik", "henk", "hennie", "henri", "henriette", "henry", "herman", "hessel", "hester", "hidde", "hilde", "hiske", "hugo", "huib", "huub", "ibrahim", "idris", "igor", "ilias", "ilja", "ilona", "ilse", "imke", "imran", "ina", "ineke", "inge", "ingeborg", "ingrid", "irene", "iris", "irma", "isa", "isabel", "isabella", "ismail", "ivar", "ivo", "jaap", "jack", "jacob", "jacoba", "jacobus", "jacqueline", "jamie", "jan", "jana", "janna", "janneke", "jansje", "jantine", "jantje", "jarno", "jasmijn", "jason", "jasper", "jayden", "jeanet", "jeanette", "jeanne", "jelle", "jelmer", "jennifer", "jenny", "jens", "jeroen", "jesse", "jessica", "jet", "jetske", "jim", "joanne", "job", "jochem", "joep", "joeri", "johan", "johanna", "johannes", "john", "joke", "jolanda", "jolien", "joline", "joop", "joost", "jordi", "joris", "jorn", "jos", "josef", "joshua", "joyce", "jozef", "judith", "julia", "julian", "juliette", "jurgen", "jurriaan", "justin", "kai", "kamil", "karel", "karen", "karim", "karin", "karlijn", "kasper", "kees", "kemal", "kenneth", "kevin", "khalid", "kim", "kirsten", "klaartje", "klaas", "koen", "koert", "kyra", "lars", "latifa", "lau", "laura", "laurens", "lea", "leah", "leander", "leen", "leendert", "leila", "lena", "lennard", "lennart", "leo", "leon", "leonie", "leontien", "leroy", "levi", "lex", "lianne", "lidewij", "lidia", "lieke", "lien", "lies", "liesbeth", "lieuwe", "lieve", "lilian", "linda", "lisa", "lisanne", "lise", "liselotte", "lode", "lodewijk", "loes", "lotte", "louis", "louise", "luc", "luca", "lucas", "lucia", "lucienne", "ludo", "luuk", "lydia", "maaike", "maarten", "madelief", "madelon", "magda", "maik", "maike", "mandy", "manon", "mara", "marc", "marcel", "marco", "margaretha", "margje", "margot", "margreet", "margriet", "maria", "marian", "marianne", "marie", "marieke", "mariel", "mariella", "marielle", "marije", "marijke", "marijn", "marilyn", "marina", "mario", "marion", "mariska", "marit", "marius", "marja", "marjan", "marjolein", "marjon", "mark", "marleen", "marlies", "marloes", "marlou", "marnix", "marten", "martha", "martijn", "martin", "martine", "mathijs", "mathilde", "mats", "matthias", "matthijs", "maud", "maurice", "maurits", "max", "maxime", "mees", "mehmet", "meike", "melanie", "melek", "melissa", "melle", "menno", "merel", "meryem", "mia", "michael", "michel", "michelle", "michiel", "mick", "mieke", "mika", "milan", "mirjam", "mirthe", "mohamed", "mohammed", "monica", "monique", "morris", "mounir", "mustafa", "myrthe", "nadia", "nadine", "nancy", "naomi", "natalia", "natalie", "natasja", "nathalie", "nathan", "nel", "nele", "nelleke", "nick", "nico", "nicolaas", "nicole", "niek", "niels", "nienke", "nigel", "nikki", "nils", "nina", "noa", "noah", "noor", "noortje", "nora", "noud", "nurten", "okan", "olaf", "olga", "olivier", "omar", "onno", "opal", "oscar", "osman", "otto", "ouassim", "patricia", "patrick", "paul", "paula", "pauline", "pepijn", "peter", "petra", "petronella", "petrus", "philip", "pien", "pieter", "pim", "pleuni", "priscilla", "puck", "quinten", "quirijn", "rabia", "rachel", "rachid", "rafael", "ralf", "ralph", "ramon", "ramona", "raoul", "rasit", "rebecca", "regina", "rein", "reinier", "remco", "remy", "renate", "rene", "renee", "renzo", "reza", "ria", "rianne", "ricardo", "richard", "rick", "rico", "riet", "rietje", "rik", "rina", "rinus", "rita", "rob", "robbert", "robert", "robin", "rodney", "roel", "roeland", "rogier", "roland", "rolf", "ronald", "ronny", "roos", "roosmarijn", "rosa", "rosalie", "rosanne", "roy", "rozemarijn", "ruben", "rudi", "rudolf", "rutger", "ruth", "ruud", "ryan", "sabine", "sacha", "said", "salim", "sam", "sami", "samir", "samira", "samuel", "sander", "sandra", "sanne", "sara", "sarah", "saskia", "sebastiaan", "selma", "sem", "sepp", "serkan", "sharon", "sibren", "siebe", "siem", "silke", "silvia", "simon", "simone", "sjaak", "sjoerd", "sjors", "sofia", "sofie", "sonja", "sophie", "stan", "stef", "stefan", "stefanie", "stella", "sten", "stephan", "sterre", "steven", "stijn", "susan", "susanne", "suzanne", "suze", "sven", "sylvia", "tamara", "tanja", "tara", "terry", "tess", "tessa", "teun", "thea", "theo", "theodora", "theodorus", "thijmen", "thijs", "thomas", "ties", "tijmen", "tim", "timo", "timothy", "tineke", "tirza", "tobias", "tom", "ton", "tonny", "toon", "trees", "trijntje", "tristan", "truus", "tycho", "umut", "valentijn", "valerie", "veerle", "vera", "victor", "vince", "vincent", "vivian", "volkan", "wanda", "wendy", "wesley", "wessel", "wieke", "wietske", "wil", "wilbert", "wilco", "wilhelmina", "willeke", "willem", "willemien", "william", "wilma", "wim", "wouter", "wybe", "xander", "yannick", "yara", "yasin", "yasmin", "yassine", "yfke", "youri", "yousef", "youssef", "yusuf", "yvon", "yvonne", "zakaria", "zeynep", "zoe", "zoey"]);
 const ACHTERNAMEN=new Set(('Jansen,Janssen,Vries,Berg,Dijk,Bakker,Visser,Smit,Meijer,Meyer,Boer,Mulder,Groot,Bos,Vos,Peters,Hendriks,Leeuwen,Dekker,Brouwer,Wolf,Wolff,Dijkstra,Smits,Graaf,Meer,Linden,Kok,Jacobs,Haan,Vermeulen,Heuvel,Veen,Broek,Bruin,Bruijn,Ruiter,Schouten,Beek,Willems,Maas,Verhoeven,Koster,Dam,Hoek,Prins,Blom,Huisman,Peeters,Jonge,Kuipers,Veld,Post,Kuiper,Hermans,Timmermans,Sanders,Wal,Kramer,Martens,Scholten,Wit,Hoekstra,Evers,Gerritsen,Postma,Doorn,Bosch,Simons,Zwart,Verbeek,Aalst,Achterberg,Baars,Bosman,Bouwman,Brands,Driessen,Egmond,Eijk,Geerts,Goossens,Haas,Hout,Jong,Klein,Koning,Lange,Molen,Mol,Nieuwenhuis,Oosterhuis,Otten,Pol,Rietveld,Roos,Schaap,Schipper,Slot,Snijders,Spek,Steen,Terpstra,Velde,Ven,Verweij,Vink,Waard,Willemsen,Zande,Zanden,Zeeuw,Zijlstra,Vliet,Wijk,Steen,Akker,Boom,Bergh,Boogaard,Bogaert,Cornelissen,Duin,Es,Gennep,Grunsven,Ham,Heijden,Hoeven,Hulst,Kamp,Kessel,Laan,Loo,Meulen,Mierlo,Oever,Pas,Reijden,Rijn,Roij,Rooij,Ruit,Santen,Schie,Sluis,Stralen,Vegt,Ver,Vleuten,Voort,Wetering,Zwan,Oversteegen,Nanninga,Oversteege').split(','));
 function zoekSuggesties(origineel, matches, eigenNamen){
   const vervangen=new Set(); matches.forEach(m=>m.val.toLowerCase().split(/\s+/).forEach(w=>vervangen.add(w)));
@@ -1058,7 +1110,7 @@ function zoekSuggesties(origineel, matches, eigenNamen){
   // Voornamen
   const reV=/\b[A-Z][a-zà-ü]+\b/g; let m;
   while((m=reV.exec(origineel))!==null){
-    if(VOORNAMEN.has(m[0]) && mag(m[0],m[0])) sugg.push(m[0]);
+    if(VOORNAMEN.has(m[0].toLowerCase()) && mag(m[0],m[0])) sugg.push(m[0]);
   }
   // Achternamen, incl. tussenvoegsels ("van der Berg" → volledige naam voorstellen)
   const reA=/((?:\b(?:[Vv]an|[Dd]e|[Dd]en|[Dd]er|[Tt]er|[Tt]en|[Tt]e)\s+){0,3})([A-Z][a-zà-ü]+)\b/g;
@@ -1123,11 +1175,11 @@ function run(){
   }
   state.keySaved=false;
 
-  const eigenNamen=document.getElementById('names').value.split(/[,\n;]+/).map(s=>s.trim()).filter(s=>s.length>1);
+  const eigenNamen=breidNamenUit(document.getElementById('names').value.split(/[,\n;]+/).map(s=>s.trim()).filter(s=>s.length>1));
   const patronen=eigenPatronen();
   const opts={email:d('d_email'),iban:d('d_iban'),bsn:d('d_bsn'),tel:d('d_tel'),pc:d('d_pc'),
     adres:d('d_adres'),kenteken:d('d_kenteken'),kvk:d('d_kvk'),aanhef:d('d_aanhef'),
-    init:d('d_init'),datum:d('d_datum'),datumtxt:d('d_datumtxt')};
+    init:d('d_init'),datum:d('d_datum'),datumtxt:d('d_datumtxt'),ip:d('d_ip'),polis:d('d_polis')};
 
   state.results=docs.map(doc=>{
     const gef=geforceerdVoorDoc(doc);
@@ -1140,7 +1192,7 @@ function run(){
   // Statistieken
   const perType={}; let totaal=0;
   state.results.forEach(r=>r.matches.forEach(m=>{perType[m.type]=(perType[m.type]||0)+1; totaal++;}));
-  const labels={EMAIL:'E-mail',IBAN:'IBAN',BSN:'BSN',TEL:'Telefoon',POSTCODE:'Postcode',ADRES:'Adres',KENTEKEN:'Kenteken',KVK:'KvK',DATUM:'Datum',NAAM:'Naam'};
+  const labels={EMAIL:'E-mail',IBAN:'IBAN',BSN:'BSN',TEL:'Telefoon',POSTCODE:'Postcode',ADRES:'Adres',KENTEKEN:'Kenteken',KVK:'KvK',DATUM:'Datum',NAAM:'Naam',IP:'IP-adres',POLIS:'Polis',DOSSIER:'Dossier',KLANT:'Klant',CONTRACT:'Contract',OFFERTE:'Offerte',REFERENTIE:'Referentie'};
   let statHtml='<div class="stat"><b>'+totaal+'</b>vervangingen</div><div class="stat"><b>'+state.results.length+'</b>document(en)</div>';
   Object.keys(perType).forEach(t=>statHtml+='<div class="stat"><b>'+perType[t]+'</b>'+(labels[t]||t)+'</div>');
   document.getElementById('stats').innerHTML=statHtml;
@@ -1172,6 +1224,8 @@ function run(){
     });
   });
   state.nCtx=ctxTeller;
+  // Automatische roundtrip-controle: is alles exact terug te zetten met de sleutel?
+  state.roundtripOk=state.results.every(r=>pasSleutelToe(r.outText,state.keyMap).out===r.doc.tekst);
   document.getElementById('ctxBox').classList.toggle('hidden',!ctxHtml);
   document.getElementById('ctxItems').innerHTML=ctxHtml;
   stoplicht();
@@ -1267,6 +1321,9 @@ function stoplicht(){
   const el=document.getElementById('stoplicht');
   if(!state.results.length){ el.innerHTML=''; return; }
   const items=[];
+  items.push(state.roundtripOk
+    ?{s:'groen',t:'Roundtrip-controle: alle documenten zijn met de sleutel exact terug te zetten'}
+    :{s:'rood',t:'Roundtrip-controle GEFAALD - de uitvoer is niet exact herstelbaar; gebruik deze niet en meld het via de footer'});
   items.push(state.nSuggesties
     ?{s:'oranje',t:state.nSuggesties+' naamsuggestie(s) open — klik aan, of beoordeel bewust dat het geen namen zijn'}
     :{s:'groen',t:'Geen openstaande naamsuggesties'});
@@ -1347,12 +1404,12 @@ async function verwerkDocxZip(zip,keuzes){
     const xml=parser.parseFromString(await zip.file(deelNaam).async('string'),'application/xml');
     if(keuzes.wijzigingen){
       // Wijzigingen accepteren: invoegingen uitpakken, verwijderingen (incl. delText) definitief weg
-      [...xml.getElementsByTagNameNS(W,'ins')].forEach(el=>{
+      ['ins','moveTo'].forEach(tag=>[...xml.getElementsByTagNameNS(W,tag)].forEach(el=>{
         while(el.firstChild) el.parentNode.insertBefore(el.firstChild,el);
         el.parentNode.removeChild(el);
-      });
-      [...xml.getElementsByTagNameNS(W,'del')].forEach(el=>el.parentNode.removeChild(el));
-      ['commentRangeStart','commentRangeEnd','commentReference'].forEach(t=>
+      }));
+      ['del','moveFrom'].forEach(tag=>[...xml.getElementsByTagNameNS(W,tag)].forEach(el=>el.parentNode.removeChild(el)));
+      ['commentRangeStart','commentRangeEnd','commentReference','moveFromRangeStart','moveFromRangeEnd','moveToRangeStart','moveToRangeEnd'].forEach(t=>
         [...xml.getElementsByTagNameNS(W,t)].forEach(el=>el.parentNode.removeChild(el)));
       if(/comments\.xml$/.test(deelNaam))
         [...xml.getElementsByTagNameNS(W,'comment')].forEach(el=>el.parentNode.removeChild(el));
@@ -1399,6 +1456,21 @@ async function verwerkDocxZip(zip,keuzes){
          .replace(/(<vt:lpwstr>)[^<]*(<\/vt:lpwstr>)/g,'$1$2');
       zip.file(mNaam,s);
     }
+    // people.xml bevat auteursnamen bij opmerkingen - persoonsinhoud strippen
+    const people=zip.file('word/people.xml');
+    if(people){
+      let s=await people.async('string');
+      s=s.replace(/<w15:person\b[^>]*>[\s\S]*?<\/w15:person>/g,'').replace(/<w15:person\b[^>]*\/>/g,'');
+      zip.file('word/people.xml',s);
+    }
+    // Documentthumbnail (afbeelding van pagina 1, incl. eventuele klantnaam) verwijderen
+    for(const t of Object.keys(zip.files).filter(nm=>/^docProps\/thumbnail\./i.test(nm))) zip.remove(t);
+    const rootRels=zip.file('_rels/.rels');
+    if(rootRels){
+      let s=await rootRels.async('string');
+      const s2=s.replace(/<Relationship\b[^>]*thumbnail[^>]*\/>/gi,'');
+      if(s2!==s) zip.file('_rels/.rels',s2);
+    }
   }
 }
 async function downloadDocx(i){
@@ -1421,7 +1493,7 @@ async function downloadDocx(i){
 function maakVerslag(){
   if(!state.results.length){ meldDlg('Verwerk eerst een document.'); return; }
   const o=state.opties.opts;
-  const labels={email:'e-mailadressen',iban:'IBAN',bsn:'BSN (elfproef)',tel:'telefoonnummers',pc:'postcodes',adres:'adressen',kenteken:'kentekens',kvk:'KvK-nummers',aanhef:'namen na aanhef',init:'initialen + achternaam',datum:'datums (numeriek)',datumtxt:'datums voluit'};
+  const labels={email:'e-mailadressen',iban:'IBAN',bsn:'BSN (elfproef)',tel:'telefoonnummers',pc:'postcodes',adres:'adressen',kenteken:'kentekens',kvk:'KvK-nummers',aanhef:'namen na aanhef',init:'initialen + achternaam',datum:'datums (numeriek)',datumtxt:'datums voluit',ip:'IP-adressen',polis:'polis-/dossiernummers'};
   const aan=Object.keys(o).filter(k=>o[k]).map(k=>labels[k]||k);
   const perType={}; let totaal=0, ctxTotaal=0;
   state.results.forEach(r=>{
@@ -1430,7 +1502,7 @@ function maakVerslag(){
   });
   let v='VERWERKINGSVERSLAG PSEUDONIMISERING\n===================================\n';
   v+='Datum/tijd: '+new Date().toLocaleString('nl-NL')+'\n';
-  v+='Tool: Pseudonimisator v6.1 — lokale browserverwerking, geen dataverzending\n';
+  v+='Tool: Pseudomaker v6.2 — lokale browserverwerking, geen dataverzending\n';
   const lblv=dossierLabel();
   if(lblv) v+='Dossierlabel: '+lblv+'\n';
   v+='\n';
@@ -1550,9 +1622,14 @@ async function restore(){
   const out=rs.out, n=rs.n;
   state.restText=out;
   const rest=(out.match(/\[[A-Z0-9]+_\d+\]/g)||[]);
-  note.innerHTML=rest.length
-    ?'<div class="notice warn">'+n+' tokens teruggezet, maar '+rest.length+' token(s) niet gevonden in de sleutel: '+rest.slice(0,10).map(esc).join(', ')+'</div>'
-    :'<div class="notice ok">'+n+' tokens teruggezet.</div>';
+  const tokensUniek=[...new Set(txt.match(/\[[A-Z0-9]+_\d+\]/g)||[])];
+  const gekoppeld=tokensUniek.filter(t=>map[t]!==undefined).length;
+  const pct=tokensUniek.length?Math.round(gekoppeld/tokensUniek.length*100):100;
+  const matchTekst=tokensUniek.length?' Sleutel-documentmatch: '+gekoppeld+' van '+tokensUniek.length+' unieke tokens ('+pct+'%).':'';
+  const verkeerd=(pct<60 && tokensUniek.length>=3)?'<div class="notice err" style="margin-top:6px"><b>Let op:</b> een lage match ('+pct+'%) wijst er vaak op dat deze sleutel niet bij dit document hoort - controleer het dossierlabel in het sleutelbestand.</div>':'';
+  note.innerHTML=(rest.length
+    ?'<div class="notice warn">'+n+' tokens teruggezet, maar '+rest.length+' token(s) niet gevonden in de sleutel: '+rest.slice(0,10).map(esc).join(', ')+'.'+matchTekst+'</div>'
+    :'<div class="notice ok">'+n+' tokens teruggezet.'+matchTekst+'</div>')+verkeerd;
   document.getElementById('restOut').innerHTML=
     esc(out).replace(/\[[A-Z0-9]+_\d+\]/g,m=>'<span class="tok" style="cursor:default">'+m+'</span>')||'<span class="muted">Geen tekst.</span>';
 }
@@ -1837,7 +1914,7 @@ document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ toonHandleiding(f
 function printHandleiding(){
   const inhoud=document.getElementById('hulpInhoud').innerHTML;
   const w=window.open('','_blank');
-  w.document.write('<html><head><title>Handleiding Pseudonimisator v6.1</title><style>body{font-family:Arial,sans-serif;padding:28px;color:#1D2632;line-height:1.5;font-size:13px}h1{font-size:20px}h3{font-size:15px;border-bottom:2px solid #FFCD00;display:inline-block;padding-bottom:2px;margin:16px 0 6px}ol,ul{margin:4px 0 8px 22px}code{background:#eef3f6;padding:1px 4px;border-radius:3px}</style></head><body><h1>Handleiding Pseudonimisator v6.1</h1>'+inhoud+'</body></html>');
+  w.document.write('<html><head><title>Handleiding Pseudomaker v6.2</title><style>body{font-family:Arial,sans-serif;padding:28px;color:#1D2632;line-height:1.5;font-size:13px}h1{font-size:20px}h3{font-size:15px;border-bottom:2px solid #FFCD00;display:inline-block;padding-bottom:2px;margin:16px 0 6px}ol,ul{margin:4px 0 8px 22px}code{background:#eef3f6;padding:1px 4px;border-radius:3px}</style></head><body><h1>Handleiding Pseudomaker v6.2</h1>'+inhoud+'</body></html>');
   w.document.close(); w.focus(); w.print();
 }
 
@@ -1930,6 +2007,15 @@ async function zelfTest(){
     const orig='Dhr. De Vries (BSN 111222333) belt via 06-12345678 over Postbus 12.';
     const r=pseudonimiseerTekst(orig,['De Vries'],[],alle);
     return pasSleutelToe(r.out,state.keyMap).out===orig;
+  });
+  T('Naamvarianten: "Jan van den Berg" dekt ook "Jan", "Berg" en "van den Berg"',()=>{
+    const v=naamVarianten('Jan van den Berg').map(x=>x.toLowerCase());
+    return v.includes('jan')&&v.includes('berg')&&v.includes('van den berg');
+  });
+  T('Polisnummer met context wordt herkend',()=>{
+    state.keyMap={};state.valToToken={};state.tellers={};state.excluded=new Set();
+    const r=pseudonimiseerTekst('Uw polisnummer: P-9028043 is verlengd.',[],[],{polis:1});
+    return r.matches.length===1 && r.matches[0].type==='POLIS' && r.out.includes('[POLIS_1]');
   });
   T('Sleutelversleuteling: encrypt → decrypt → identiek, fout wachtwoord geweigerd',async()=>{
     const key={versie:2,map:{'[NAAM_1]':'De Vries'}};
