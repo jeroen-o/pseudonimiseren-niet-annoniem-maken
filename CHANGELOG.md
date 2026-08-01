@@ -1,5 +1,10 @@
 # Versiegeschiedenis
 
+## v6.3
+- Voornamenlijst uitgebreid naar 9.300+ namen, gebaseerd op de Nederlandse Voornamen Top 10.000 (Meertens Netwerk Naamkunde, SVB-data 1983-2006; via MIT-gelicenseerde herpublicatie)
+- Achternaamsuggesties uitgebreid naar 930+ naamkernen, gebaseerd op de GBA Familienamen Top 1.000 (2007)
+- Bronvermelding opgenomen in de handleiding
+
 ## v6.2
 - Naamvarianten: een ingevoerde naam dekt automatisch voornaam, achternaam met tussenvoegsels, samengestelde en koppelteken-varianten
 - Voornamenlijst uitgebreid naar 2.300+ Nederlandse voornamen (suggesties)

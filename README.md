@@ -15,9 +15,9 @@ Vervang persoonsgegevens in teksten, Word-bestanden, PDF's, e-mails en spreadshe
 
 ## Installatie op GitHub Pages
 
-1. Maak een nieuw repository (bijv. `pseudonimisator`) en upload `index.html`
+1. Maak een nieuw repository (bijv. `Pseudomaker`) en upload `index.html`
 2. Ga naar **Settings → Pages**, kies **Deploy from a branch**, selecteer `main` / root en sla op
-3. Na ± 1 minuut staat de tool op `https://<gebruikersnaam>.github.io/pseudonimisator/`
+3. Na ± 1 minuut staat de tool op `https://<gebruikersnaam>.github.io/Pseudomaker/`
 
 ## Insluiten in Google Sites
 
