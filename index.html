@@ -16,9 +16,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}
 header{background:var(--primary);color:#fff;padding:26px 24px;border-bottom:4px solid var(--btn);position:relative}
-#hulpBtn{position:absolute;top:20px;right:24px;z-index:5}
-#dlBtn{position:absolute;top:20px;right:172px;z-index:5}
-@media(max-width:640px){#dlBtn{position:static;margin-top:8px}#hulpBtn{position:static;margin-top:8px}}
+.hdrknoppen{position:absolute;top:20px;right:24px;z-index:5;display:flex;gap:10px}
+@media(max-width:760px){.hdrknoppen{position:static;margin:12px 0 2px;flex-wrap:wrap}}
 #dlgModal{position:fixed;inset:0;background:rgba(29,38,50,.55);z-index:70;display:flex;align-items:center;justify-content:center;padding:20px}
 #dlgModal.hidden{display:none}
 #infoBtn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;border:2px solid var(--btn);background:transparent;color:var(--btn);font:italic 700 15px Georgia,serif;cursor:pointer;vertical-align:middle;margin-left:4px}
@@ -41,8 +40,8 @@ header{background:var(--primary);color:#fff;padding:26px 24px;border-bottom:4px 
 h1{font-weight:800;font-size:30px;line-height:1.15}
 header p{opacity:.85;margin-top:6px;font-size:15px;max-width:780px}
 .badge{display:inline-block;background:var(--btn);color:var(--primary);font-weight:700;font-size:12px;border-radius:999px;padding:3px 12px;margin-bottom:10px;letter-spacing:.4px}
-main{padding:24px 0 60px}
-.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+main{padding:36px 0 60px}
+.tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
 .tab{border:0;background:#fff;color:var(--primary);font:inherit;font-weight:600;padding:10px 18px;border-radius:999px;cursor:pointer;box-shadow:var(--shadow)}
 .tab.active{background:var(--primary);color:#fff}
 .card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px;margin-bottom:18px}
@@ -62,8 +61,8 @@ select,input[type=text],input[type=password]{border:1px solid var(--border);bord
 .btn:disabled{opacity:.45;cursor:not-allowed}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
 .checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:6px 16px;margin-top:6px}
-.checks label{font-weight:500;font-size:14px;color:var(--text2);display:flex;align-items:center;gap:8px;margin:0;cursor:pointer}
-.checks input{accent-color:var(--primary);width:16px;height:16px}
+.checks label{font-weight:500;font-size:14px;color:var(--text2);display:flex;align-items:flex-start;gap:8px;margin:0;cursor:pointer;line-height:1.35}
+.checks input{accent-color:var(--primary);width:16px;height:16px;flex:0 0 16px;margin-top:1px}
 .out{border:1px solid var(--border);border-radius:8px;padding:14px;background:#fdfdfd;min-height:100px;max-height:420px;overflow:auto;white-space:pre-wrap;word-break:break-word;font-size:14px}
 .tok{background:#eaf3f6;border:1px solid var(--accent);border-radius:5px;padding:0 4px;font-weight:600;color:#2f6577;font-size:13px;cursor:pointer}
 .tok:hover{background:var(--btn);border-color:var(--primary);color:var(--primary)}
@@ -86,7 +85,11 @@ th{color:var(--primary);background:var(--bg)}
 .filelist li{list-style:none;display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--bg);flex-wrap:wrap}
 .filelist .fname{font-weight:600;color:var(--primary)}
 footer{padding:0 0 40px;color:#7a8791;font-size:12px}
-input[type=file]{font-size:13px}
+footer a,footer a:visited{color:var(--accent);font-weight:600}
+input[type=file]{font-size:13px;color:var(--text2)}
+input[type=file]::file-selector-button{border:0;font:600 14px Montserrat,sans-serif;padding:9px 16px;border-radius:8px;cursor:pointer;background:var(--btn);color:var(--primary);margin-right:10px}
+input[type=file]::file-selector-button:hover{background:var(--primary);color:#fff}
+input[type=file]::-webkit-file-upload-button{border:0;font:600 14px Montserrat,sans-serif;padding:9px 16px;border-radius:8px;cursor:pointer;background:var(--btn);color:var(--primary);margin-right:10px}
 input[type=range]{accent-color:var(--primary)}
 #canvasWrap{position:relative;border:1px solid var(--border);border-radius:8px;overflow:hidden;background:#e9eef2;touch-action:none;max-width:100%}
 #fotoCanvas{display:block;max-width:100%;cursor:crosshair}
@@ -98,8 +101,10 @@ input[type=range]{accent-color:var(--primary)}
 <body>
 <header>
   <div class="wrap">
-    <button class="btn ghost" id="dlBtn" onclick="downloadTool()" title="Sla het HTML-bestand op je eigen computer op">⬇ Tool downloaden</button>
-    <button class="btn accent" id="hulpBtn" onclick="toonHandleiding(true)">📖 Handleiding</button>
+    <div class="hdrknoppen">
+      <button class="btn ghost" id="dlBtn" onclick="downloadTool()" title="Sla het HTML-bestand op je eigen computer op">⬇ Tool downloaden</button>
+      <button class="btn accent" id="hulpBtn" onclick="toonHandleiding(true)">📖 Handleiding</button>
+    </div>
     <span class="badge">100% LOKAAL · GEEN DATAVERZENDING</span>
     <h1>Pseudonimisator <span style="color:var(--btn)">v6.1</span> <button id="infoBtn" onclick="toonInfo(true)" title="Wat is pseudonimiseren?" aria-label="Uitleg over pseudonimiseren">i</button></h1>
     <p>Vervang persoonsgegevens in teksten en documenten door tokens vóórdat je ze gebruikt in een AI-tool, en maak gezichten, kentekens of documentgegevens op foto's onherkenbaar. Alles gebeurt in je eigen browser.</p>
@@ -142,7 +147,7 @@ input[type=range]{accent-color:var(--primary)}
       <textarea id="names" class="small" placeholder="Jansen, Pietersen, De Vries, Bakkerij Willems — genitiefvormen (Jansens) worden automatisch meegenomen"></textarea>
 
       <h3>Eigen patronen (optioneel, geavanceerd)</h3>
-      <textarea id="patterns" class="small" placeholder="Eén patroon per regel, als LABEL|regex — bijv.&#10;POLIS|\bP-\d{7}\b&#10;DOSSIER|\bD\d{4}-\d{3}\b"></textarea>
+      <textarea id="patterns" class="small" style="min-height:96px" placeholder="Eén patroon per regel, als LABEL|regex — bijv.&#10;POLIS|\bP-\d{7}\b&#10;DOSSIER|\bD\d{4}-\d{3}\b"></textarea>
 
       <h3>Automatische herkenning</h3>
       <div class="checks">
