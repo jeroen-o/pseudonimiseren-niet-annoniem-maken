@@ -109,6 +109,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
 body{font-family:'Montserrat',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 a{color:inherit}
@@ -128,15 +129,17 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 nav.open .hamburger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 nav.open .hamburger span:nth-child(2){opacity:0}
 nav.open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-@media(max-width:640px){
-  .logo{font-size:18px;gap:8px}
-  .logo .mark{width:28px;height:28px;font-size:18px}
+@media(max-width:860px){
   .hamburger{display:block}
   .navlinks{position:absolute;top:64px;left:0;right:0;flex-direction:column;align-items:stretch;gap:0;background:var(--ink);border-bottom:3px solid var(--geel);padding:8px 14px 16px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .2s,opacity .2s}
   nav.open .navlinks{transform:translateY(0);opacity:1;pointer-events:auto}
   .navlinks a{font-size:17px;padding:14px 8px;border-bottom:1px solid rgba(255,255,255,.08)}
   .navlinks a:last-child{border-bottom:0}
   .navcta{margin-top:10px;text-align:center;padding:14px!important;border-radius:10px}
+}
+@media(max-width:640px){
+  .logo{font-size:18px;gap:8px}
+  .logo .mark{width:28px;height:28px;font-size:18px}
 }
 @media(max-width:640px){.navlinks a:not(.navcta){display:none}}
 
@@ -145,7 +148,7 @@ nav.open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .hero::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(109,166,185,.28),transparent 68%)}
 .hero .wrap{position:relative;z-index:1}
 .eyebrow{display:inline-block;background:rgba(255,205,0,.16);color:var(--geel);font-weight:700;font-size:13px;letter-spacing:.6px;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:22px}
-.hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:900;line-height:1.08;letter-spacing:-.5px;max-width:16ch}
+.hero h1{font-size:clamp(28px,7vw,60px);font-weight:900;line-height:1.1;letter-spacing:-.5px;max-width:16ch;overflow-wrap:break-word;hyphens:auto}
 .hero h1 span{color:var(--geel)}
 .hero p.lead{font-size:clamp(17px,2.1vw,21px);color:#c6cfd7;margin-top:22px;max-width:56ch}
 .herobtns{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
@@ -161,14 +164,14 @@ nav.open .hamburger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 section{padding:72px 0}
 .sectie-kop{max-width:60ch;margin-bottom:44px}
 .label{color:var(--aqua);font-weight:700;font-size:13px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:12px}
-h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;line-height:1.15;letter-spacing:-.3px}
+h2{font-size:clamp(22px,5.2vw,38px);font-weight:800;line-height:1.18;letter-spacing:-.3px;overflow-wrap:break-word;hyphens:auto}
 h2 + p{color:var(--ink2);font-size:17px;margin-top:14px}
 
 /* ---- Hoe het werkt (genummerde stappen — echte volgorde) ---- */
 .stappen{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:stap}
 .stap{background:var(--wit);border:1px solid var(--rand);border-radius:14px;padding:26px 24px;position:relative}
 .stap::before{counter-increment:stap;content:counter(stap,decimal-leading-zero);font-weight:900;font-size:15px;color:var(--aqua);letter-spacing:1px}
-.stap h3{font-size:19px;font-weight:700;margin:10px 0 8px}
+.stap h3{font-size:19px;font-weight:700;margin:10px 0 8px;overflow-wrap:break-word}
 .stap p{color:var(--ink2);font-size:15px}
 @media(max-width:820px){.stappen{grid-template-columns:1fr}}
 
@@ -176,12 +179,13 @@ h2 + p{color:var(--ink2);font-size:17px;margin-top:14px}
 .func{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .kaart{background:var(--wit);border:1px solid var(--rand);border-radius:14px;padding:24px}
 .kaart .ico{width:42px;height:42px;border-radius:10px;background:var(--bg);display:grid;place-items:center;font-size:22px;margin-bottom:14px}
-.kaart h3{font-size:18px;font-weight:700;margin-bottom:6px}
+.kaart h3{font-size:18px;font-weight:700;margin-bottom:6px;overflow-wrap:break-word}
 .kaart p{color:var(--ink2);font-size:15px}
 @media(max-width:640px){.func{grid-template-columns:1fr}}
 
 /* ---- AVG-blok (de eerlijke lijn) ---- */
 .avg{background:var(--ink);color:#fff;border-radius:18px;padding:48px 44px;position:relative;overflow:hidden}
+@media(max-width:640px){.avg{padding:32px 22px;border-radius:14px}.avg::before{font-size:120px;right:10px}}
 .avg::before{content:"§";position:absolute;right:24px;top:-10px;font-size:180px;font-weight:900;color:rgba(255,205,0,.10);line-height:1}
 .avg .label{color:var(--geel)}
 .avg h2{max-width:20ch}
@@ -207,7 +211,7 @@ h2 + p{color:var(--ink2);font-size:17px;margin-top:14px}
 footer{background:var(--ink);color:#9aa6af;padding:40px 0;font-size:14px}
 .faqlijst{max-width:820px}
 .faqitem{background:var(--bg);border:1px solid var(--rand);border-radius:12px;margin-bottom:12px;overflow:hidden}
-.faqitem summary{cursor:pointer;padding:18px 22px;font-weight:700;font-size:17px;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+.faqitem summary{cursor:pointer;padding:18px 22px;font-weight:700;font-size:17px;overflow-wrap:break-word;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
 .faqitem summary::-webkit-details-marker{display:none}
 .faqitem summary::after{content:"+";font-size:24px;font-weight:400;color:var(--aqua);flex-shrink:0;transition:transform .2s}
 .faqitem[open] summary::after{transform:rotate(45deg)}
