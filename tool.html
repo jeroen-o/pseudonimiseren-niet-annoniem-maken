@@ -115,6 +115,13 @@ input[type=range]{accent-color:var(--primary)}
   .hulpbox{max-width:100%!important;padding:18px;max-height:88vh;overflow:auto}
   #hulpModal,#infoModal{padding:12px 8px}
   #dlgModal{padding:12px}
+  /* Bestandsvelden: knop op eigen regel, native tekst eronder i.p.v. afgekapt ernaast */
+  input[type=file]{display:block;width:100%;max-width:100%;margin:2px 0 6px;font-size:13px;
+    white-space:normal;word-break:break-word}
+  input[type=file]::file-selector-button{display:block;width:100%;margin:0 0 6px}
+  input[type=file]::-webkit-file-upload-button{display:block;width:100%;margin:0 0 6px}
+  /* De knop náást een bestandsveld krijgt eigen regel zonder inspring */
+  input[type=file]+.btn{margin-left:0!important;margin-top:2px;width:100%;justify-content:center}
   /* Knoppen: comfortabele tikdoelen, volledige breedte waar het kan */
   .btn{padding:12px 18px}
   .btnrow .btn{flex:1 1 auto}
@@ -168,7 +175,8 @@ input[type=range]{accent-color:var(--primary)}
       <div id="scanNotice"></div>
 
       <h3>Dossierlabel (optioneel)</h3>
-      <input type="text" id="dossierLabel" placeholder="bijv. Dossier 2026-041 — komt in de sleutel, bestandsnamen en het verslag, zodat sleutels niet verwisseld raken" style="width:100%">
+      <input type="text" id="dossierLabel" placeholder="bijv. Dossier 2026-041" style="width:100%">
+      <div class="muted" style="margin-top:4px">Komt in de sleutel, de bestandsnamen en het verslag, zodat sleutels niet verwisseld raken.</div>
 
       <h3>Bestaande sleutel aanvullen (vervolgdossier)</h3>
       <p class="muted">Laad de sleutel van een eerder verwerkt dossier: bestaande tokens blijven dan identiek en nieuwe gegevens krijgen vervolgnummers. Zo blijft één dossier over meerdere rondes consistent.</p>
